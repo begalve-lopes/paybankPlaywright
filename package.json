@@ -5,6 +5,7 @@
   },
   "scripts": {},
   "dependencies": {
+    "bullmq": "^5.76.8",
     "pg-promise": "^12.6.2"
   }
 }
