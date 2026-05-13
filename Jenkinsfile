@@ -2,17 +2,29 @@ pipeline {
     agent any
 
     stages {
-        stage('Node.js Deps') {
+        stage('Check Node') {
             steps {
-                sh 'npm install nodejs'
+                sh 'node -v'
+                sh 'npm -v'
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
                 sh 'npm install'
             }
         }
-         stage('E2E Tests') {
+
+        stage('Install Playwright Browsers') {
             steps {
-                echo 'npx playwright test'
+                sh 'npx playwright install --with-deps'
             }
         }
-         
+
+        stage('E2E Tests') {
+            steps {
+                sh 'npx playwright test'
+            }
+        }
     }
 }
